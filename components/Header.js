@@ -7,7 +7,9 @@ import {
     UserIcon
 } from '@heroicons/react/solid'
 import { useState } from "react"
-
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { DateRangePicker } from 'react-date-range';
 
 
 
@@ -17,12 +19,17 @@ function Header() {
 const [searchInput, setSearchInput] = useState("");
 const [startDate, setStartDate] = useState(new Date())
 const [endDate, setEndDate] = useState(new Date())
+
+const handleSelect = (ranges) => {
+setStartDate(ranges.selection.startDate)
+setEndDate(ranges.selection.endDate)
+}
+
 const selectionRange = {
     startDate: startDate,
     endDate: endDate,
     key: 'selection'
 }
-
 
 
     return (
@@ -57,13 +64,22 @@ const selectionRange = {
             </div>
 
             {searchInput && (
-                <div>
+                <div className="flex flex-col col-span-3 mx-auto">
                     <DateRangePicker 
                     ranges={[selectionRange]}
-
+                    minDate={new Date()}
+                    rangeColors={["#FD5B61"]}
+                    onChange={handleSelect}
                     />
+                      <div className="flex items-center border-b mb-4">
+                    <h2 className="text-2xl flex-grow font-semibold">Number of Guests</h2>
+
+                    <UserIcon className="h-5" />
+                    <input type ="number" className="w-12 pl-2 text-lg outline-none text-red-400"/>
+                     </div>
                 </div>
-            ) }
+              
+            )}
         </header>
     )
 }
