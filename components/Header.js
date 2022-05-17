@@ -34,6 +34,20 @@ function Header() {
         setEndDate(ranges.selection.endDate)
     }
 
+    const search = () => {
+        router.push({
+           pathname: '/search',
+           query: {
+               location: searchInput,
+               startDate: startDate.toISOString(),
+               endDate: endDate.toISOString(),
+               noOfGuests,
+
+           }
+
+        })
+    }
+
     const selectionRange = {
         startDate: startDate,
         endDate: endDate,
@@ -97,7 +111,7 @@ function Header() {
 
                     <div className="flex bg-green-200">
                         <button onClick={resetInput} className="flex-grow text-gray-500">Cancel</button>
-                        <button className="flex-grow text-red-400">Search</button>
+                        <button onClick={search} className="flex-grow text-red-400">Search</button>
                     </div>
 
                 </div>
