@@ -10,6 +10,7 @@ import { useState } from "react"
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRangePicker } from 'react-date-range';
+import { useRouter } from "next/dist/client/router";
 
 
 
@@ -20,7 +21,8 @@ function Header() {
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
     const [noOfGuests, setNoOfGuests] = useState(1);
- 
+    const router = useRouter();
+  
 
    const resetInput = () => {
        setSearchInput("")
@@ -44,7 +46,7 @@ function Header() {
             {/* <link rel="stylesheet" href="https://unpkg.com/react-day-picker/lib/style.css"> */}
             {/* left-side */}
 
-            <div className="relative flex items-center h-10 cursor-pointer my-auto">
+            <div onClick={() => router.push("/")} className="relative flex items-center h-10 cursor-pointer my-auto">
                 <Image src="https://links.papareact.com/qd3"
                     layout='fill'
                     objectFit="contain" objectPosition="left"
