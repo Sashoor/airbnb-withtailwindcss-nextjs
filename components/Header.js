@@ -16,17 +16,17 @@ import { useRouter } from "next/dist/client/router";
 
 
 
-function Header() {
+function Header({ placeholder }) {
     const [searchInput, setSearchInput] = useState("");
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
     const [noOfGuests, setNoOfGuests] = useState(1);
     const router = useRouter();
-  
 
-   const resetInput = () => {
-       setSearchInput("")
-   }
+
+    const resetInput = () => {
+        setSearchInput("")
+    }
 
 
     const handleSelect = (ranges) => {
@@ -36,14 +36,14 @@ function Header() {
 
     const search = () => {
         router.push({
-           pathname: '/search',
-           query: {
-               location: searchInput,
-               startDate: startDate.toISOString(),
-               endDate: endDate.toISOString(),
-               noOfGuests,
+            pathname: '/search',
+            query: {
+                location: searchInput,
+                startDate: startDate.toISOString(),
+                endDate: endDate.toISOString(),
+                noOfGuests,
 
-           }
+            }
 
         })
     }
@@ -71,7 +71,7 @@ function Header() {
                 <input
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
-                    className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-600" type="text" placeholder="Start your search" />
+                    className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-600" type="text" placeholder={placeholder || "Start your search"} />
                 <SearchIcon className="hidden md:inline h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" />
             </div>
 
@@ -86,7 +86,7 @@ function Header() {
                 </div>
             </div>
 
-{/* Search input and the calander */}
+            {/* Search input and the calander */}
 
             {searchInput && (
                 <div className="flex flex-col col-span-3 mx-auto">
