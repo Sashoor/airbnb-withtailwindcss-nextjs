@@ -4,6 +4,7 @@ import { useRouter } from "next/dist/client/router"
 import { format } from "date-fns"
 import InfoCard from '../components/InfoCard';
 
+
 function Search({ searchResults }) {
 
     const router = useRouter();
@@ -44,6 +45,8 @@ function Search({ searchResults }) {
                     </div>
 
                 </section>
+
+                 
             </main>
 
             <Footer />
